@@ -222,8 +222,18 @@
       <KeyWord name="MAXIMUM"/>
       <KeyWord name="minimum"/>
       <KeyWord name="MINIMUM"/>
-      <KeyWord name="mod"/>
-      <KeyWord name="MOD"/>
+      <KeyWord name="mod" func="yes">
+      <Overload retVal ="" descr="Returns the remainder portion of the result of dividing one number by another">
+         <Param name="dividend" />
+         <Param name="divisor" />
+         </Overload>
+      </KeyWord>
+      <KeyWord name="MOD" func="yes">
+      <Overload retVal ="" descr="Returns the remainder portion of the result of dividing one number by another">
+         <Param name="dividend" />
+         <Param name="divisor" />
+         </Overload>
+      </KeyWord>
       <KeyWord name="next"/>
       <KeyWord name="NEXT"/>
       <KeyWord name="not"/>
