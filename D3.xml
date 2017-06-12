@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252" ?>
 <NotepadPlus>
 	<AutoComplete language="D3">
-		<Environment ignoreCase="yes" />
+		<Environment ignoreCase="yes" startFunc="(" stopFunc=")" paramSeparator="," />
       <KeyWord name="$chain"/>
       <KeyWord name="$CHAIN"/>
       <KeyWord name="$include"/>
@@ -76,8 +76,18 @@
       <KeyWord name="DATA"/>
       <KeyWord name="date"/>
       <KeyWord name="DATE"/>
-      <KeyWord name="dcount"/>
-      <KeyWord name="DCOUNT"/>
+      <KeyWord name="dcount" func="yes">
+         <Overload retVal ="" descr="Returns the number of occurences of the delimeter specified&#x0a;in str.exp2 within str.exp1, plus one">
+         <Param name="str.exp1" />
+         <Param name="str.exp2" />
+         </Overload>
+      </KeyWord>
+      <KeyWord name="DCOUNT" func="yes">
+         <Overload retVal ="" descr="Returns the number of occurences of the delimeter specified&#x0a;in str.exp2 within str.exp1, plus one">
+         <Param name="str.exp1" />
+         <Param name="str.exp2" />
+         </Overload>
+      </KeyWord>
       <KeyWord name="debug"/>
       <KeyWord name="DEBUG"/>
       <KeyWord name="del"/>
