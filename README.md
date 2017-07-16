@@ -1,37 +1,40 @@
 # MVBASIC-plus-plus
 
-## Notepad-plus-plus-D3
 This is a fork of the [Notepad-plus-plus-D3 project by Remington Richards](https://github.com/Artifex-Latronis/Notepad-plus-plus-D3), significantly enhanced and extended from D3 for all MV platforms. Sincere thanks are extended to Remington for his inspiration and initial effort on this. I hope he will be interested in further collaboration on this.
 
 The goal of this project is to provide syntax highlighting and other benefits to MVBASIC developers through the [Notepad++](https://notepad-plus-plus.org/) application.
 
-The concept of a User Defined Language (UDL) and a style in Notepad++ are essentially the same. Each XML file in this package represents a different style which can be applied to a single language (MVBASIC dialect). Rather than customizing one of the above files, it is recommended that new styles be saved as a new UDL, so that the definitions here remain consistent base-line examples.
+In Notepad++, the concept of a User Defined Language (UDL) and a style are essentially the same. Each XML file in this package represents a different style which can be applied to a single language (MVBASIC dialect). Rather than customizing one of the above files, it is recommended that new styles be saved as a new UDL, so that the definitions here remain consistent base-line examples.
 
-The MVD3_Python_D UDL is styled with color schemes that somewhat mirror python, as our community will be seeing that in the future. Note the pattern of the filename:
+The MVD3_Python_D UDL created by Remington is styled for a dark theme (background) with foreground color schemes that somewhat mirror python, as our community will be seeing that in the future. Note the pattern of the filename:
 
 - "MV" ensures all MVBASIC UDL files are grouped together in a folder.
 - "D3" identifies the variant. QM and UV are being tested.
-- "Python" is the name of this specific styling. Contributions are welcoe here with any unique name.
+- "Python" is the name of this specific styling. Contributions are welcome here with any unique name.
 - "D" indicates this is best used with a Dark theme. "L" indicates it's best used with a Light theme.
+
+For a default Notepad++ installation with no theming, the MVD3_Default_L UDL is recommended as a starting point.
 
 ## Installation
 
-Copy the D3Language.xml file from this project to:
-"C:\Users\username\AppData\Roaming\Notepad++"
-In Notepad++, go to menu>Language>Define your language...
-In the User Defined Language dialog, click Import.
-Navigate to the above folder and open one of the MV XML files.
-A small dialog should confirm "Import Successful".
-X to close the dialog.
-Exit and restart Notepad++.
+- Copy the D3Language.xml file from this project to:\
+    "C:\Users\username\AppData\Roaming\Notepad++"
+- In Notepad++, go to menu>Language>Define your language...
+- In the User Defined Language dialog, click Import.
+- Navigate to the above folder and open one of the MV XML files.\
+    A small dialog should confirm "Import Successful".
+- X to close the dialog.
+- Exit and restart Notepad++.
+- Open the file provided with this project: UDL_Testing.d3\
+    Verify that the code is now strongly styled ... even if not to your preferences.
 
-## Usage
+## Daily Usage
 
 Copy/Paste D3 BASIC code into the editor.
 Go to menu>Language> ... Names  should be at the bottom.
 Select one of the styles and the current window will re-style according to the current definition.
 
-By default the UDLs are set to activate when specific file extensions are opened. These are as follows, and can be changed as desired.
+By default the UDLs are set to activate when specific file extensions are opened. These are as follows, and can be changed as desired. Of course program items in MV do not have a suffix. At some point a mechanism might be created that exports programs with an extension and then removes them on uploading back to MV.
 
 - For D3: d3, d3basic
 - For QM: qm, qmb, qmbasic
@@ -44,6 +47,8 @@ Go to menu>Language>Define your language...
 In the User Defined Language dialog, open the "User language" dropdown, select the current UDL.
 
 As seen in the User Defined Language dialog, there is a link to [Documentation](https://ivan-radic.github.io/udl-documentation/) with details about how UDLs work. There are many [tutorials](https://www.google.com/search?q=notepad%2B%2B+user+defined+language+tutorial) on the topic of UDLs. The information here includes detail not in that documentation, and which applies specifically to the MVBASIC UDLs.
+
+Support for this repo will not include assistance with the UDL editor or making deeper changes. For problems in that area, visit the [Notepad++ repo](https://github.com/notepad-plus-plus/notepad-plus-plus), the [community forum](https://notepad-plus-plus.org/community/), or other resources. Support here will only be provided for the content which is built using the tools. And that is what is documented below.
 
 ### General
 
@@ -89,6 +94,7 @@ During the Import operation, files in this package are merged into a single XML 
 - Look at the additional data provided by Richard.
 - Verify all keywords and operators.
 - Look for more detail on NPP styling which might improve syntactic parsing for MVBASIC.
+- Consider creating a full language XML file rather than relying on the limitations of the UDL editor.
 - Move this ReadMe detail to wiki pages.
 - Create a single wiki page to describe all available UDLs with a screenshot.
 - Write notes on direct interfaces with MV to eliminate copying code out, modifying, then copying back into MV for compilation and testing.
@@ -107,4 +113,4 @@ With all this in mind, please be discerning about reporting "Issues". The additi
 
 ## License
 
-There was no license with the original code. Unless there is disagreement from the originator, this is licensed under the [Free Public License 1.0.0](https://opensource.org/licenses/FPL-1.0.0) (The simplest official license possible.)
+There was no license with the original code. Unless there is disagreement from the [originator](https://github.com/Artifex-Latronis), this is licensed under the [Free Public License 1.0.0](https://opensource.org/licenses/FPL-1.0.0) (The simplest official license possible.)

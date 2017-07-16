@@ -1,0 +1,231 @@
+SUBROUTINE MY_PROG(ARG1, ARG2)
+* This program should compile if all of the syntax is valid
+
+* ### Compiler Directives
+
+COMMON /NAMED/ AAA,BBB , ARRAY(12)
+dim first(3),second(3)
+Dimension third(3)
+EQU FIRST TO ARRAY(1)
+EQUATE SECOND TO ARRAY(2) 
+INCLUDE INC.BP BLAH ;* With file reference
+INCLUDE MORE_BLAH ; * Without file reference
+
+* ### Comments
+* Note syntax above, three # signs triggers nested comment style
+* https://ivan-radic.github.io/udl-documentation/ << URL is a link
+! ENHANCE : Different styles on trigger words draw attention
+* TODO change something here
+* FIX this problem
+! Exclamation
+!* Combined
+*! Combined
+NULL ; * End of statement
+NULL ; ! End of statement
+
+
+* ### Labels
+2200   ** Numeric followed by comment
+999 CRT ; * Numeric followed by statement
+Alpha_Label: * All letters, underscore, and period, followed by a colon
+EXECUTE.THIS1: CRT ; ! Keyword is OK
+
+
+* ### Quotes
+CRT 'single quotes'
+PRINT "double quotes"
+EXECUTE \backslashes\
+CRT 'Prefix' : @am : 'Suffix' : @am
+var = \Nested 'text' here\ ; * todo : Look into different styling for nested quotes
+
+
+* ### General Statements
+
+CLEARFILE F.NAME
+SELECT FNAME TO MYLIST
+WRITE RECORD ON F.NAME,\OTHER.KEY\ ON ERROR GOTO OOPS_LABEL
+RELEASE F.NAME, KEY ; * KEY is a keyword but here used as a var
+
+
+
+* ### Code Folding
+* ToDo : Needs refinement
+
+OPEN "FILE_NAME" TO F.NAME THEN
+  CRT "Success"
+  CRT "More success"
+END ELSE
+  crt 'FAILED'
+END
+
+IF THIS AND THAT THEN
+  NULL
+END ELSE
+  NULL
+END
+
+READU VAR FROM F_NAME,VAR LOCKED
+  CRT "IT'S LOCKED"
+END THEN
+  CRT "GOT IT"
+END ELSE
+  CRT "NOT THERE"
+END
+
+BEGIN CASE
+  CASE FOO = "BAR"
+    CRT "BAR"
+  CASE (FOO <> 'BAR' AND BAR <= BAZ) OR BLAH
+    CRT "huh?"
+  CASE 1
+    NULL ; * nothing to do
+END CASE
+
+LOCATE(THIS,THAT,6;"AL";POSITION) THEN
+  * Do something
+END ELSE
+  OTHER=INSERT(THIS,THAT,6,POSITION,0)
+END
+
+
+LOOP READNEXT KEY ELSE KEY = "" UNTIL KEY = "" DO
+  CRT KEY:" is the key"
+REPEAT
+end ; ! FIX folding
+
+LOOP
+  GOSUB GET.VAL
+UNTIL VAL MATCH '0N' DO ERR = 'INVALID VAL'; GOSUB EXECUTE.THIS1 REPEAT
+* FIX references to labels are not recognized (much more complex parsing)
+
+IF THIS THEN THAT ELSE
+  NULL
+END
+end ; ! FIX folding
+
+IF THIS THEN
+  NULL
+END ELSE STOP
+end ; ! FIX folding
+
+FOR IDX = 1 TO DCOUNT(FOO,@AM)
+  IF IDX = 3 THEN CONTINUE
+  CRT "Masked value: ": IDX 'MR#4'
+  IF NOT(IDX< 8) THEN EXIT
+NEXT IDX
+end ; ! FIX folding
+end
+
+ifr list = choice then in.list=1 else in.list = 0
+end ; ! FIX folding
+end
+
+* FIX : These lines should NOT render as multi-line fold
+READ RECORD FROM F.NAME,"QUOTED_KEY" ELSE STOP 202,\QUOTED_KEY\
+end ; ! FIX folding
+
+READV rec FROM F.Name, ID.KEY, 1 ELSE gosub oops.label
+end ; ! FIX folding
+
+READVU rec FROM F.Name, ID.KEY, 1 LOCKED EXIT THEN CONTINUE ELSE gosub oops.label
+End ; ! FIX folding
+eND ;
+enD ; * casing is ignored
+
+OPEN 'AAA' TO F.AAA ELSE ERR = 'MV here>><<'; GOSUB 9100
+end ; ! FIX folding
+
+
+* ### Miscellaneous Syntax
+IF VAL EQ CUST.REC<22> THEN TEMP =22 ELSE TEMP =9
+end ; ! FIX folding
+end
+
+if foo <> bar then gosub abc
+end ; ! FIX folding
+  
+
+
+* ### Terminal & Printer I/O
+
+crt
+print
+Get
+GetX
+SEND
+SENDX
+INPUT VAR,2:
+IN A_CHARACTER
+echo on
+echo off
+PRINTER ON
+PRINTER OFF
+PRINTER CLOSE
+page
+heading '****' 'L#20': 'Company Name' :TIMEDATE()'R#40'
+footing \Bottom of page 'pncl'\
+
+* ### Flow Control
+
+STOP
+ABORT
+CHAIN "ELSEWHERE"
+Enter "Other_Program"
+CALL MYPROG(P1,P2,P3)
+CALL @MYVAR
+CRT @(0,23):CEOL:ERRMSG: ; * @ for CRT is not same as @ for CALL
+
+GOSUB HERE
+ON VAR GOSUB AA,BB,CC
+GO 900
+RETURN TO 200 ; * Note Return To combination is recognized
+
+for n=1 to 10
+  if n <= 2 then continue else exit ; * << flow
+  end ; ! FIX folding
+  end
+next n
+
+DEBUG ; * Worthy of attention
+
+* ### Operators
+
+* TODO: Note that quoted text within parentheses has parent styling
+IF VAR EQ '\E' OR ( VAR NE '\E' AND VAR <> '**' ) or (VAR LE 99 AND VAR GE 1) THEN crt "wow"
+end ; ! FIX folding
+
+VAR(2)<1,VAL> = CUST$REC<1,POS>
+
+VAR(3) = C_Rec<3>[1,2]; VAR(4) = C_Rec<3>[3,1]
+
+VAR = 100 % 2     ; * check validity
+VAR := "TEXT" ; * if colon is next to var it's rendered as a label
+TOT$+=2
+res=num/den ;* FIX : NUM var confused with NUM() function
+crt @(0,23) : (x+1)*y
+
+* ### Functions
+
+AM = CHAR(254); VM = CHAR(253); SVM = CHAR(252)
+VAR = MOD(100,2)
+unique = system(19)
+Now = TIMEDATE()
+WHO=OCONV(3,'u501bb')
+
+IF NOT(SYS.PROCF) THEN CRT
+end ; ! FIX folding
+
+IF NOT(MOD(VAL,10)) THEN CRT '.': ; * FIX: Weird nested parentheses styling
+end ; ! FIX folding
+
+CRT field(  TRIM(FOO[1,12]), " ",3)"L#12":' ':SEQ(FOO)
+
+RESULT = OCONV(INFO,'G1 1') ; * FIX: Weird two types of numeric styling
+SMALL = DELETE(LARGE,SOME.ATB,86)
+My$Total += oconv(Something<AttributeRef,3>,'MCN')
+IF VAR<ATB,*> = "SOMETHING" THEN CRT ; * FIX asterisk looks like comment
+
+END ; * TODO: Find a way to get this recognized as program terminator when not in multi-line group
+
+* TODO: Line below, with no trailing EOL looks like a variable
+END
